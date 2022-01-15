@@ -45,7 +45,7 @@ private fun run(numberOfDiscs: Int, solver: Solver, delay: Int) {
     println("move #${move}")
     pegsPrintStrategy.print(pegs)
     println()
-    while (!pegs.get(0).isEmpty() || !pegs.get(1).isEmpty()) {
+    while (!pegs[0].isEmpty() || !pegs[1].isEmpty()) {
         solverStrategy.apply(pegs)
         move++
 

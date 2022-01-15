@@ -6,7 +6,7 @@
 
     <artifactId>towers</artifactId>
     <groupId>ch.guengel</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Tower of Hanoi</name>
@@ -15,15 +15,25 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <kotlin.code.style>official</kotlin.code.style>
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
-
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-        <junit-jupiter-engine.version>5.6.0</junit-jupiter-engine.version>
-        <kotlin.version>1.5.31</kotlin.version>
-        <kotlinx-cli-jvm.version>0.3.3</kotlinx-cli-jvm.version>
-        <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
         <main.class>ch.guengel.towers.MainKt</main.class>
-        <maven-assembly-plugin.version>2.6</maven-assembly-plugin.version>
+
+        <junit-jupiter.version>5.8.2</junit-jupiter.version>
+        <kotlin.version>1.6.10</kotlin.version>
+        <kotlinx-cli-jvm.version>0.3.4</kotlinx-cli-jvm.version>
+
+        <dependency-check-maven.version>6.5.1</dependency-check-maven.version>
+        <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
+        <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
+        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+
+        <!-- Sonar -->
+        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <!-- Organization and project keys are displayed in the right sidebar of the project homepage -->
+        <sonar.organization>rafaelostertag</sonar.organization>
+        <sonar.junit.reportPaths>target/failsafe-reports,target/surefire-reports</sonar.junit.reportPaths>
+        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <repositories>
@@ -98,6 +108,37 @@
                     </execution>
                 </executions>
             </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-prepare-agent-integration</id>
+                        <goals>
+                            <goal>prepare-agent-integration</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report-integration</id>
+                        <goals>
+                            <goal>report-integration</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
@@ -111,7 +152,13 @@
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-jupiter-engine.version}</version>
+            <version>${junit-jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit-jupiter.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -133,4 +180,43 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>towers-maven</id>
+            <name>Towers Maven Repository</name>
+            <url>https://colossus.kruemel.home/nexus/repository/towers/</url>
+        </repository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>security-scan</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.owasp</groupId>
+                        <artifactId>dependency-check-maven</artifactId>
+                        <version>${dependency-check-maven.version}</version>
+                        <configuration>
+                            <formats>
+                                <format>HTML</format>
+                                <format>XML</format>
+                            </formats>
+                            <suppressionFiles>
+                                <suppressionFile>dependency-check-suppression.xml</suppressionFile>
+                            </suppressionFiles>
+                            <assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
