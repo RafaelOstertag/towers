@@ -33,7 +33,6 @@
         <!-- Organization and project keys are displayed in the right sidebar of the project homepage -->
         <sonar.organization>rafaelostertag</sonar.organization>
         <sonar.junit.reportPaths>target/failsafe-reports,target/surefire-reports</sonar.junit.reportPaths>
-        <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco</sonar.coverage.jacoco.xmlReportPaths>
     </properties>
 
     <repositories>
