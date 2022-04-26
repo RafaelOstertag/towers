@@ -21,7 +21,7 @@
         <kotlin.version>1.6.10</kotlin.version>
         <kotlinx-cli-jvm.version>0.3.4</kotlinx-cli-jvm.version>
 
-        <dependency-check-maven.version>6.5.1</dependency-check-maven.version>
+        <dependency-check-maven.version>7.1.0</dependency-check-maven.version>
         <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
         <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
