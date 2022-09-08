@@ -17,16 +17,16 @@
         <kotlin.compiler.jvmTarget>11</kotlin.compiler.jvmTarget>
         <main.class>ch.guengel.towers.MainKt</main.class>
 
-        <junit-jupiter.version>5.8.2</junit-jupiter.version>
-        <kotlin.version>1.6.10</kotlin.version>
-        <kotlinx-cli-jvm.version>0.3.4</kotlinx-cli-jvm.version>
+        <junit-jupiter.version>5.9.0</junit-jupiter.version>
+        <kotlin.version>1.7.10</kotlin.version>
+        <kotlinx-cli-jvm.version>0.3.5</kotlinx-cli-jvm.version>
 
         <dependency-check-maven.version>7.1.0</dependency-check-maven.version>
-        <exec-maven-plugin.version>3.0.0</exec-maven-plugin.version>
-        <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
-        <maven-assembly-plugin.version>3.3.0</maven-assembly-plugin.version>
-        <maven-failsafe-plugin.version>2.22.2</maven-failsafe-plugin.version>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
+        <exec-maven-plugin.version>3.1.0</exec-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
+        <maven-assembly-plugin.version>3.4.2</maven-assembly-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
 
         <!-- Sonar -->
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
